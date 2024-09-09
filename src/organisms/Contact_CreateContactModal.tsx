@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/store";
+import { addContact } from "../redux/contactsSlice";
 
 type ContactCreateContactModalProps = {
   setIsModalOpen: (isModalOpen: boolean) => void;
@@ -7,6 +10,8 @@ type ContactCreateContactModalProps = {
 export default function Contact_CreateContactModal({
   setIsModalOpen,
 }: ContactCreateContactModalProps) {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -36,6 +41,7 @@ export default function Contact_CreateContactModal({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData);
+    dispatch(addContact(formData));
     closeModal();
   };
 
