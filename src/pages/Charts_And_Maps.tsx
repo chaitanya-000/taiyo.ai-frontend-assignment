@@ -1,7 +1,8 @@
-import React from 'react'
-
+import ChartsAndMaps_Charts from "../organisms/ChartsAndMaps_Charts";
 export default function Charts_And_Maps() {
   return (
-    <div>Charts_And_Maps</div>
-  )
+    <>
+      <ChartsAndMaps_Charts />
+    </>
+  );
 }
