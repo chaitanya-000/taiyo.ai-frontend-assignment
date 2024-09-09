@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 type ContactCreateContactModalProps = {
   setIsModalOpen: (isModalOpen: boolean) => void;
 };
@@ -5,8 +7,36 @@ type ContactCreateContactModalProps = {
 export default function Contact_CreateContactModal({
   setIsModalOpen,
 }: ContactCreateContactModalProps) {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    status: "" as "active" | "inActive",
+  });
+
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      status: value as "active" | "inActive",
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(formData);
+    closeModal();
   };
 
   return (
@@ -25,26 +55,37 @@ export default function Contact_CreateContactModal({
               x
             </button>
           </div>
-          <form className="p-4 md:p-5 space-y-4  text-white">
-            <div className="max-w-sm md:max-w-md flex-col gap-2  flex items-start ">
-              <label htmlFor="First Name w-full" className="font-bold">
+          <form
+            className="p-4 md:p-5 space-y-4  text-white"
+            onSubmit={handleSubmit}
+          >
+            <div className="max-w-sm md:max-w-md flex-col gap-2 flex items-start">
+              <label htmlFor="firstName" className="font-bold">
                 First Name
               </label>
               <input
+                id="firstName"
+                name="firstName"
                 className="w-full max-w-sm h-11 rounded-md text-black px-4 text-lg"
                 required
                 type="text"
+                value={formData.firstName}
+                onChange={handleChange}
                 maxLength={15}
               />
             </div>
-            <div className="max-w-sm md:max-w-md flex-col gap-2 mb-5 flex items-start ">
-              <label htmlFor="First Name " className="font-bold">
+            <div className="max-w-sm md:max-w-md flex-col gap-2 mb-5 flex items-start">
+              <label htmlFor="lastName" className="font-bold">
                 Last Name
               </label>
               <input
+                id="lastName"
+                name="lastName"
                 className="w-full max-w-sm h-11 rounded-md text-black px-4 text-lg"
                 required
                 type="text"
+                value={formData.lastName}
+                onChange={handleChange}
                 maxLength={15}
               />
             </div>
@@ -55,19 +96,23 @@ export default function Contact_CreateContactModal({
                   <input
                     type="radio"
                     name="status"
-                    required
                     value="active"
-                    className="checked:bg-blue-500 indeterminate:bg-gray-300 default:ring-2 required:border-red-500 valid:border-green-500 invalid:border-red-500 mr-2 w-5 rounded-full h-5"
+                    checked={formData.status === "active"}
+                    onChange={handleRadioChange}
+                    className="mr-2 w-5 rounded-full h-5"
+                    required
                   />
                   Active
                 </label>
                 <label className="flex items-center">
                   <input
                     type="radio"
-                    required
                     name="status"
-                    value="Inactive"
-                    className="checked:bg-blue-500 indeterminate:bg-gray-300 default:ring-2 required:border-red-500 valid:border-green-500 invalid:border-red-500 mr-2 w-5 rounded-full h-5"
+                    value="inActive"
+                    checked={formData.status === "inActive"}
+                    onChange={handleRadioChange}
+                    className="mr-2 w-5 rounded-full h-5"
+                    required
                   />
                   Inactive
                 </label>
