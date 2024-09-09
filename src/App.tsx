@@ -2,8 +2,8 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Removes redundant code</h1>
+    <div className="w-full h-screen bg-black text-white">
+      <h1>The styles are done with tailwind</h1>
     </div>
   );
 }
