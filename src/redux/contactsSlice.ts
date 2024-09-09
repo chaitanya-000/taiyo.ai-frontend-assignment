@@ -10,6 +10,11 @@ interface ContactsState {
   contacts: Contact[];
 }
 
+interface UpdateContactPayload {
+  index: number;
+  updatedContact: Contact;
+}
+
 const initialState: ContactsState = {
   contacts: [],
 };
@@ -24,8 +29,14 @@ const contactsSlice = createSlice({
     removeContact(state, action: PayloadAction<number>) {
       state.contacts.splice(action.payload, 1);
     },
+    updateContact(state, action: PayloadAction<UpdateContactPayload>) {
+      const { index, updatedContact } = action.payload;
+      if (index >= 0 && index < state.contacts.length) {
+        state.contacts[index] = updatedContact;
+      }
+    },
   },
 });
 
-export const { addContact , removeContact} = contactsSlice.actions;
+export const { addContact, removeContact, updateContact } = contactsSlice.actions;
 export default contactsSlice.reducer;
