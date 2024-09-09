@@ -49,6 +49,14 @@ export default function RootLayout() {
                 <span className="ms-3 text-3xl font-bold">Contact</span>
               </NavLink>
             </li>
+            <li onClick={closeSidebar}>
+              <NavLink
+                to="Charts_And_Maps"
+                className="flex items-center p-2 mt-8 text-white rounded-lg hover:text-black  hover:bg-slate-200"
+              >
+                <span className="ms-3 text-3xl font-bold">Charts and Maps</span>
+              </NavLink>
+            </li>
           </ul>
         </div>
       </aside>
