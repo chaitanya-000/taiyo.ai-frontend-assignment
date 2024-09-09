@@ -1,8 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../redux/store";
+import { removeContact } from "../redux/contactsSlice";
 
 export default function ContactsList() {
   const contacts = useSelector((state: RootState) => state.contacts.contacts);
+   const dispatch = useDispatch();
+
+  const handleDelete = (index: number) => {
+    dispatch(removeContact(index));
+  };
+
 
   return (
     <div className={contacts.length === 0 ? "mt-72" : "mt-7 w-full h-full"}>
@@ -25,7 +32,9 @@ export default function ContactsList() {
                 Status - {contact.status}
               </h3>
               <div className="w-full flex flex-row gap-3  items-end justify-end">
-                <button className="px-4 text-sm rounded-md py-2.5 border-2  border-red-700 text-white hover:bg-red-700">
+                <button className="px-4 text-sm rounded-md py-2.5 border-2  border-red-700 text-white hover:bg-red-700"
+                onClick={() => handleDelete(index)}
+                >
                   Delete
                 </button>
                 <button className="px-4 text-sm rounded-md py-2.5 bg-orange-400 hover:bg-orange-600">

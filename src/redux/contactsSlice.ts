@@ -21,8 +21,11 @@ const contactsSlice = createSlice({
     addContact(state, action: PayloadAction<Contact>) {
       state.contacts.push(action.payload);
     },
+    removeContact(state, action: PayloadAction<number>) {
+      state.contacts.splice(action.payload, 1);
+    },
   },
 });
 
-export const { addContact } = contactsSlice.actions;
+export const { addContact , removeContact} = contactsSlice.actions;
 export default contactsSlice.reducer;
