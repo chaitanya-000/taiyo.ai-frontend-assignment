@@ -1,11 +1,23 @@
 import "./App.css";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import RootLayout from "./layouts/RootLayout";
+import Contact from "./pages/Contact";
 
 function App() {
-  return (
-    <div className="w-full h-screen bg-black text-white">
-      <h1>The styles are done with tailwind</h1>
-    </div>
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<RootLayout />}>
+        <Route index element={<Contact />} />
+      </Route>
+    )
   );
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
