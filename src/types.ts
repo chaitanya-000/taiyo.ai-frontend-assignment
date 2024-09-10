@@ -20,3 +20,13 @@ export interface ErrorProps {
   error: Error | null;
   refetch: () => Promise<QueryObserverResult<CovidData, Error>>;
 }
+
+export interface EditContactModalProps {
+  closeModal: () => void;
+  contact: {
+    firstName: string;
+    lastName: string;
+    status: "active" | "Inactive";
+  };
+  index: number;
+}

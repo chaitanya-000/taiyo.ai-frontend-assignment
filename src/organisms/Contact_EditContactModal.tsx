@@ -1,17 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateContact } from "../redux/contactsSlice";
 import { AppDispatch } from "../redux/store";
-
-type EditContactModalProps = {
-  closeModal: () => void;
-  contact: {
-    firstName: string;
-    lastName: string;
-    status: "active" | "Inactive";
-  };
-  index: number;
-};
+import { EditContactModalProps } from "../types";
 
 export default function Contact_EditContactModal({
   closeModal,
