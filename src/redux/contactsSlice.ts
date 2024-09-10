@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface Contact {
   firstName: string;
   lastName: string;
-  status: "active" | "inActive";
+  status: "active" | "Inactive";
 }
 
 interface ContactsState {
@@ -38,5 +38,6 @@ const contactsSlice = createSlice({
   },
 });
 
-export const { addContact, removeContact, updateContact } = contactsSlice.actions;
+export const { addContact, removeContact, updateContact } =
+  contactsSlice.actions;
 export default contactsSlice.reducer;

@@ -8,14 +8,25 @@ export default function ContactsList() {
   const contacts = useSelector((state: RootState) => state.contacts.contacts);
   const dispatch = useDispatch();
   const [isEditModalOpen, setEditModalOpen] = useState(false);
-  const [selectedContact, setSelectedContact] = useState<{ firstName: string; lastName: string; status: "active" | "inActive" } | null>(null);
+  const [selectedContact, setSelectedContact] = useState<{
+    firstName: string;
+    lastName: string;
+    status: "active" | "Inactive";
+  } | null>(null);
   const [editIndex, setEditIndex] = useState<number | null>(null);
 
   const handleDelete = (index: number) => {
     dispatch(removeContact(index));
   };
 
-  const openEditModal = (contact: { firstName: string; lastName: string; status: "active" | "inActive" }, index: number) => {
+  const openEditModal = (
+    contact: {
+      firstName: string;
+      lastName: string;
+      status: "active" | "Inactive";
+    },
+    index: number
+  ) => {
     setSelectedContact(contact);
     setEditIndex(index);
     setEditModalOpen(true);

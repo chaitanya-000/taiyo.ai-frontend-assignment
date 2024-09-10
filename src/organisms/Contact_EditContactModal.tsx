@@ -5,11 +5,19 @@ import { AppDispatch } from "../redux/store";
 
 type EditContactModalProps = {
   closeModal: () => void;
-  contact: { firstName: string; lastName: string; status: "active" | "inActive" };
+  contact: {
+    firstName: string;
+    lastName: string;
+    status: "active" | "Inactive";
+  };
   index: number;
 };
 
-export default function Contact_EditContactModal({ closeModal, contact, index }: EditContactModalProps) {
+export default function Contact_EditContactModal({
+  closeModal,
+  contact,
+  index,
+}: EditContactModalProps) {
   const [formData, setFormData] = useState(contact);
   const dispatch: AppDispatch = useDispatch();
 
@@ -19,7 +27,10 @@ export default function Contact_EditContactModal({ closeModal, contact, index }:
   };
 
   const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, status: e.target.value as "active" | "inActive" });
+    setFormData({
+      ...formData,
+      status: e.target.value as "active" | "Inactive",
+    });
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,9 +53,14 @@ export default function Contact_EditContactModal({ closeModal, contact, index }:
               x
             </button>
           </div>
-          <form className="p-4 md:p-5 space-y-4 text-white" onSubmit={handleSubmit}>
+          <form
+            className="p-4 md:p-5 space-y-4 text-white"
+            onSubmit={handleSubmit}
+          >
             <div className="max-w-sm md:max-w-md flex-col gap-2 flex items-start">
-              <label htmlFor="firstName" className="font-bold">First Name</label>
+              <label htmlFor="firstName" className="font-bold">
+                First Name
+              </label>
               <input
                 id="firstName"
                 name="firstName"
@@ -57,7 +73,9 @@ export default function Contact_EditContactModal({ closeModal, contact, index }:
               />
             </div>
             <div className="max-w-sm md:max-w-md flex-col gap-2 mb-5 flex items-start">
-              <label htmlFor="lastName" className="font-bold">Last Name</label>
+              <label htmlFor="lastName" className="font-bold">
+                Last Name
+              </label>
               <input
                 id="lastName"
                 name="lastName"
@@ -88,8 +106,8 @@ export default function Contact_EditContactModal({ closeModal, contact, index }:
                   <input
                     type="radio"
                     name="status"
-                    value="inActive"
-                    checked={formData.status === "inActive"}
+                    value="Inactive"
+                    checked={formData.status === "Inactive"}
                     onChange={handleRadioChange}
                     className="mr-2 w-5 rounded-full h-5"
                     required

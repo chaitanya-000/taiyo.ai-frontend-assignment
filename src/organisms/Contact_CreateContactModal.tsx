@@ -15,7 +15,7 @@ export default function Contact_CreateContactModal({
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    status: "" as "active" | "inActive",
+    status: "" as "active" | "Inactive",
   });
 
   const closeModal = () => {
@@ -34,7 +34,7 @@ export default function Contact_CreateContactModal({
     const { value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      status: value as "active" | "inActive",
+      status: value as "active" | "Inactive",
     }));
   };
 
@@ -114,8 +114,8 @@ export default function Contact_CreateContactModal({
                   <input
                     type="radio"
                     name="status"
-                    value="inActive"
-                    checked={formData.status === "inActive"}
+                    value="Inactive"
+                    checked={formData.status === "Inactive"}
                     onChange={handleRadioChange}
                     className="mr-2 w-5 rounded-full h-5"
                     required
