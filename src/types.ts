@@ -1,3 +1,5 @@
+import { QueryObserverResult } from "@tanstack/react-query";
+
 export interface CovidData {
   cases: Record<string, number>;
   deaths: Record<string, number>;
@@ -12,4 +14,9 @@ export interface CountryData {
   active: number;
   deaths: number;
   recovered: number;
+}
+
+export interface ErrorProps {
+  error: Error | null;
+  refetch: () => Promise<QueryObserverResult<CovidData, Error>>;
 }
