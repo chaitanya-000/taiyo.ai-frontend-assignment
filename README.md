@@ -1,46 +1,95 @@
-# Getting Started with Create React App
+# Documentation Maintenance
+Link : https://trello.com/b/BEQ92VQs/traiyoai-frontend-assignment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Trello board has been created for maintaining the commits and adding more detailed information about them. Each commit is associated with a specific number, such as `#3` or `#43`. You can reference these commit numbers by navigating to the corresponding card in the Trello board to find more details about the commit.
 
-## Available Scripts
+Additionally, each commit has a **unique deployment view** attached, allowing you to see how the project looked at the time of that specific commit. This ensures that all changes are tracked and easily accessible for review.
 
-In the project directory, you can run:
+---
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Project Structure & File Organization
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## RootLayout Component
 
-### `npm test`
+The `RootLayout` component provides the main layout structure for the entire application. It features a **responsive sidebar** that remains consistent across all routes. The component leverages **React Router’s Outlet** to render the content of specific routes within the layout. This keeps the sidebar persistent while displaying dynamic content based on the current route.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+The component follows the **Atomic Design** methodology which are categorized into three primary types:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Molecules
+Molecules are small, reusable components that combine basic UI elements. These serve as the building blocks used throughout the application.
+- **Examples**: StatCard, Loading.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. Organisms
+Organisms are more complex components, built from molecules and other elements. They represent meaningful sections of the user interface.
+- **Examples**: Map component, charts displaying COVID-19 data.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. Pages
+Pages are full, functional views that consist of multiple organisms and other components to create complete screens.
+- **Examples**: Dashboard with charts and maps.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## State Management
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application’s global state is managed using **Redux Toolkit**.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Contacts Slice (`contactsSlice.ts`)
+The `contactsSlice` manages the state for contact information, providing the following functionality:
+- **Add Contact**: The `addContact` action appends a new contact to the array.
+- **Remove Contact**: The `removeContact` action removes a contact by its index.
+- **Update Contact**: The `updateContact` action updates the details of a contact based on its index.
+  
+The initial state consists of an empty array of contacts.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+## API Integration
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `apiRequests.ts`
+This file centralizes all API requests related to fetching COVID-19 data. The API calls are structured into reusable functions to handle data fetching.
+The base URL for the API is configured using an environment variable (`process.env.REACT_APP_BASE_URL`).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+## TypeScript Interfaces
+
+### `types.ts`
+The `types.ts` file contains all TypeScript interfaces used throughout the application.
+
+---
+
+# API
+
+**Endpoint**: `/historical/all?lastdays=all`  
+Fetches the historical COVID-19 data for all countries, including cases, deaths, and recoveries over time.  
+Used for displaying the line chart of cases, deaths, and recoveries.
+
+**Endpoint**: `/countries`  
+This data is used for populating the map with markers for each country.  
+Used for rendering the map with country markers and displaying COVID-19 stats in popups.
+
+**Endpoint**: `/all`  
+Fetches the global statistics for COVID-19, including total cases, deaths, recoveries, and active cases worldwide.  
+Used for displaying global statistics on the dashboard, such as total cases, deaths, and recoveries.
+
+All API requests are made using the base URL defined in the `.env` file. The environment variable is named `REACT_APP_BASE_URL`.
+
+---
+
+
+# How to Run the Project
+1. **Clone the Repository**:
+git clone https://github.com/chaitanya-000/taiyo.ai-frontend-assignment
+
+2. **Install Dependencies: Install the project dependencies using the package manager:** npm install or yarn install
+
+3. Set Up Environment Variables: Create a .env file in the root directory and add the following:
+REACT_APP_BASE_URL=https://disease.sh/v3/covid-19
+
+4. Run the Project: To start the development server, run the following command:
+npm start or yarn start
+
+
