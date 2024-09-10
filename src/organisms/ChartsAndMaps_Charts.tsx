@@ -67,9 +67,15 @@ export default function ChartsAndMaps_Charts() {
     ],
   };
   return (
-    <div>
-      <h2 className="text-3xl font-bold">Charts and Maps</h2>
-      <Line data={chartData} />
+    <div className="w-full h-[600px]  mb-52">
+      <h2 className="text-3xl font-bold">Chart</h2>
+      <Line
+        data={chartData}
+        options={{
+          responsive: true,
+          maintainAspectRatio: false,
+        }}
+      />
     </div>
   );
 }
