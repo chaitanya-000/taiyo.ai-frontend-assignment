@@ -1,7 +1,6 @@
-import React from "react";
 import { CountryData } from "../types";
 import { Marker, Popup } from "react-leaflet";
-import CustomerLocationMarker from "./CustomerLocationMarker";
+import CustomLocationMarker from "./CustomLocationMarker";
 
 export default function CountryMarkers({
   countryData,
@@ -18,7 +17,7 @@ export default function CountryMarkers({
           <Marker
             key={index}
             position={[lat, long]}
-            icon={CustomerLocationMarker("#1e4ed8")}
+            icon={CustomLocationMarker("#1e4ed8")}
           >
             <Popup>
               <p className="text-[#323232] font-medium">{country}</p>
